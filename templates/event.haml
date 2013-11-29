@@ -1,0 +1,21 @@
+%h1= project_name
+%h3
+   %a(href="#/projects/#{project_name}/events") history
+
+:each environment in environments
+   %table.table
+      %thead
+         %tr
+            %td
+               %a(href="/#/environments/#{environment.id}/events&environment=#{environment.name}")= environment.name
+         %tr
+            %th Date
+            %th Subject
+            %th Message
+      %tbody
+         :each event in environment.events
+            %tr
+               %td= event.date
+               %td= event.subject
+               %td
+                  %pre= event.message

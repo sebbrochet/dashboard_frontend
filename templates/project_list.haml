@@ -1,0 +1,13 @@
+%h1 Project list
+%table.table
+   %thead
+      %tr
+         %th Name
+         %th Description
+   %tbody
+      :each project in projects
+         %tr
+            %td
+               %a(href="/#/projects/#{project.name}")= project.name
+            %td
+               %pre= project.description 

@@ -1,0 +1,18 @@
+%h1 Events listed by date (most recents first)
+%table.table
+   %thead
+      %tr
+         %th Date
+         %th Project
+         %th Environement
+         %th Subject
+         %th Message
+   %tbody
+      :each event in events
+         %tr
+            %td= event.date
+            %td= event.project_name
+            %td= event.environment_name
+            %td= event.subject
+            %td 
+               %pre= event.message

@@ -1,0 +1,8 @@
+<table class="table table-striped">
+  <thead><tr><td><a href="/#/environments/<%= environment.id %>/events&environment=<%= environment.name %>"><%= environment.name %></a></td></tr></thead>
+  <tr class="event-item">
+    <td><%= event.date %></td>
+    <td><%= event.subject %></td>
+    <td><pre><%= event.message %></pre></td>
+  </tr>
+</table>
