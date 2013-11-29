@@ -118,7 +118,7 @@ function stackTrace() {
 
           this.get('#/event_ticker_bad', function(context) {
             context.$element().append('<table class="table">');
-            this.load('http://datasource.vidal.net/api/v1/events?order_by=-date', {json: true})
+            this.load(REST_API + 'events?order_by=-date', {json: true})
             .then(function(data) {
                 $.each(data["objects"], function(i, event) {
                   environment = event.environment
@@ -132,7 +132,7 @@ function stackTrace() {
 
           this.get('#/event_ticker', function(context) {
             context.app.swap('');
-            this.load('http://datasource.vidal.net/api/v1/events?order_by=-date', {json: true})
+            this.load(REST_API + 'events?order_by=-date', {json: true})
             .then(function(data) {
                 context.events = data["objects"];
                 for (var i = 0; i < context.events.length; i++) {
