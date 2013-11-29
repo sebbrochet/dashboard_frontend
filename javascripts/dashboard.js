@@ -148,7 +148,7 @@ function stackTrace() {
     });
 
     $(function() {
-        REST_API = "http://datasource.vidal.net/api/v1/"
+        REST_API = "http://django_dashboard.yourdomain.com/api/v1/"
         app.run('#/');
     });
 
