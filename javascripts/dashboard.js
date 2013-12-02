@@ -78,7 +78,7 @@ function stackTrace() {
             app.clearTemplateCache()             
             context.app.swap('');
             self = this
-            this.load(REST_API + 'environments?project__name=' + this.params['name'], {json: true})
+            this.load(REST_API + 'environments?order_by=name&project__name=' + this.params['name'], {json: true})
             .then(function(data) {
                 context.$element().append('<h1>' + self.params['name'] + '</h1>');
                 context.$element().append('<h3><a href="#/projects/' + self.params['name'] + '/events"><small>(history)</small></a></h3>');
