@@ -50,7 +50,7 @@ function stackTrace() {
             this.partial('templates/project_detail.template');
           });
 
-          this.get('#/environments/:id/events&environment=:name', function(context) {
+          this.get('#/environments_old/:id/events&environment=:name', function(context) {
             context.app.swap('');
             environment = { "name" :  this.params['name'], "id" : this.params['id'] } 
             this.load(REST_API + 'events?order_by=-date&environment=' + this.params['id'], {json: true})
@@ -61,6 +61,17 @@ function stackTrace() {
                 });
             });
           });
+
+          this.get('#/environments/:id/events&environment=:name', function(context) {
+            context.app.swap('');
+            this.environment = { "name" :  this.params['name'], "id" : this.params['id'] }
+            this.load(REST_API + 'events?order_by=-date&environment=' + this.params['id'], {json: true})
+            .then(function(data) {
+                context.events = data["objects"];
+                context.render('templates/event_environment.haml').appendTo(context.$element());
+            });
+          });
+
 
           this.get('#/projects/:name/events', function(context) {
             context.app.swap('');
@@ -78,7 +89,7 @@ function stackTrace() {
             app.clearTemplateCache()             
             context.app.swap('');
             self = this
-            this.load(REST_API + 'environments?project__name=' + this.params['name'], {json: true})
+            this.load(REST_API + 'environments?order_by=name&project__name=' + this.params['name'], {json: true})
             .then(function(data) {
                 context.$element().append('<h1>' + self.params['name'] + '</h1>');
                 context.$element().append('<h3><a href="#/projects/' + self.params['name'] + '/events"><small>(history)</small></a></h3>');
@@ -150,7 +161,7 @@ function stackTrace() {
     $(function() {
         // Replace django_dashboard.yourdomain.com with the domain you use to serve django_dashboard REST API
         // or edit your local /etc/hosts file to resolve django_dashboard.yourdomain.com to the IP you uese to serve django_dashboard REST API
-        REST_API = "http://django_dashboard.yourdomain.com/api/v1/"
+        REST_API = "http://datasource.vidal.net/api/v1/"
         app.run('#/');
     });
 
