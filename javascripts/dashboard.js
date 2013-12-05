@@ -158,6 +158,12 @@ function stackTrace() {
 
     });
 
+    function tick(){
+        app.refresh();
+    }
+ 
+    setInterval(function(){ tick () }, 60000);
+
     $(function() {
         // Replace django_dashboard.yourdomain.com with the domain you use to serve django_dashboard REST API
         // or edit your local /etc/hosts file to resolve django_dashboard.yourdomain.com to the IP you uese to serve django_dashboard REST API
