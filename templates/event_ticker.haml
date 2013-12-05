@@ -11,7 +11,8 @@
       :each event in events
          %tr
             %td= event.date
-            %td= event.project_name
+            %td
+               %a(href="/#/projects/#{event.project_name}")= event.project_name
             %td= event.environment_name
             %td= event.subject
             %td 
